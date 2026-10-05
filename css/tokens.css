@@ -1,0 +1,30 @@
+/* Colors and fonts. Change the look of the whole site here. Dark first, light follows the visitor's system. */
+:root{
+  --bg:#181b22;
+  --surface:#222630;
+  --surface-2:#2b303c;
+  --text:#e8e4d6;
+  --muted:#9ba1ae;
+  --accent:#c9a24b;
+  --accent-ink:#181b22;
+  --rust:#c0705a;
+  --line:#3a404d;
+  --focus:#e6c26a;
+  --font-display:"Fraunces", Georgia, serif;
+  --font-body:"Source Serif 4", Georgia, serif;
+  --font-mono:ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --radius:4px;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#eceff3; --surface:#ffffff; --surface-2:#e3e7ee; --text:#1c2029; --muted:#586070;
+    --accent:#8a6a1c; --accent-ink:#ffffff; --rust:#9c4430; --line:#c9cfd9; --focus:#8a6a1c;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#eceff3; --surface:#ffffff; --surface-2:#e3e7ee; --text:#1c2029; --muted:#586070;
+  --accent:#8a6a1c; --accent-ink:#ffffff; --rust:#9c4430; --line:#c9cfd9; --focus:#8a6a1c;
+  color-scheme:light;
+}

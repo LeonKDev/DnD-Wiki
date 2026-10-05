@@ -1,0 +1,128 @@
+/* Layout and components. Uses the tokens from tokens.css. */
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-padding-top:150px}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--font-body); font-size:16px; line-height:1.6;
+}
+h1,h2,h3{font-family:var(--font-display); font-weight:650; margin:0; text-wrap:balance; letter-spacing:.2px}
+a{color:inherit}
+a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
+p{margin:0 0 10px}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+.masthead{
+  position:sticky; top:env(safe-area-inset-top, 0px); z-index:10;
+  background:var(--bg); border-bottom:1px solid var(--line);
+  padding-inline:16px;
+}
+.mast-inner{max-width:720px; margin:0 auto}
+.mast-top{display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; padding-block:12px 6px}
+.brand{display:flex; flex-direction:column; text-decoration:none; margin-right:auto; min-width:0}
+.brand .eyebrow{font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--rust)}
+.brand .name{font-family:var(--font-display); font-weight:650; font-size:1.2rem; line-height:1.15}
+.search{flex:1 1 200px; min-width:0}
+.search input, .dmpanel input{
+  width:100%; background:var(--surface); color:var(--text); border:1px solid var(--line);
+  border-radius:var(--radius); padding:9px 12px; font:inherit; font-size:.92rem;
+}
+.search input::placeholder, .dmpanel input::placeholder{color:var(--muted)}
+.dmbtn, .btn{
+  font:inherit; font-size:.82rem; color:var(--accent); background:transparent; cursor:pointer;
+  border:1px solid var(--accent); border-radius:999px; padding:6px 14px; white-space:nowrap;
+}
+.dmbtn:hover, .btn:hover{background:var(--accent); color:var(--accent-ink)}
+.dmbtn[aria-pressed="true"]{background:var(--accent); color:var(--accent-ink)}
+.dmpanel{padding-block:4px 12px}
+.dmpanel form{display:flex; flex-wrap:wrap; gap:8px}
+.dmpanel input{flex:1 1 200px; width:auto; min-width:0}
+.dmmsg{margin:6px 0 0; font-size:.85rem; color:var(--rust); min-height:1.2em}
+.typenav{display:flex; overflow-x:auto; gap:0; margin-inline:-4px}
+.typenav a{
+  color:var(--muted); text-decoration:none; font-size:.85rem; white-space:nowrap;
+  padding:9px 11px 10px; border-bottom:2px solid transparent;
+}
+.typenav a:hover{color:var(--accent)}
+.typenav a.on{color:var(--accent); border-bottom-color:var(--accent)}
+
+main{max-width:720px; margin:0 auto; padding-inline:16px; padding-block:26px 70px}
+.view > * + *{margin-top:34px}
+.intro{color:var(--muted); max-width:56ch; margin:0}
+.sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--line); margin-bottom:14px; padding-bottom:8px}
+.sec-head h2{font-size:1.2rem; color:var(--accent)}
+.more{font-size:.82rem; color:var(--accent)}
+.page-h{font-size:1.9rem}
+
+.filters{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px}
+.filters button{
+  font:inherit; font-size:.82rem; color:var(--muted); background:transparent;
+  border:1px solid var(--line); border-radius:999px; padding:4px 13px; cursor:pointer;
+}
+.filters button:hover{color:var(--text); border-color:var(--muted)}
+.filters button[aria-pressed="true"]{color:var(--accent-ink); background:var(--accent); border-color:var(--accent)}
+
+.cards{display:grid; gap:10px}
+.card{
+  display:block; text-decoration:none; background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); padding:13px 15px;
+}
+a.card:hover{border-color:var(--accent)}
+.card-top{display:flex; align-items:baseline; gap:8px 10px; flex-wrap:wrap}
+.card h3{font-size:1.05rem; margin-right:auto; min-width:0}
+.card p{color:var(--muted); font-size:.92rem; margin:6px 0 0}
+.typelabel{font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--rust)}
+.pill{font-size:.7rem; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:2px 9px; white-space:nowrap}
+.pill.on{color:var(--accent); border-color:var(--accent)}
+.dmtag{font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--rust); border:1px solid var(--rust); border-radius:999px; padding:1px 8px; white-space:nowrap}
+.empty{color:var(--muted); border:1px dashed var(--line); border-radius:var(--radius); padding:16px; margin:0}
+
+.events{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.events li{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px}
+.events .txt{flex:1 1 260px; min-width:0}
+.part{font-size:.78rem; color:var(--accent); flex:0 0 auto; font-variant-numeric:tabular-nums}
+.tag{flex:0 0 auto; font-size:.68rem; border-radius:999px; padding:2px 9px; white-space:nowrap}
+.tag.party{color:var(--muted); border:1px solid var(--line)}
+.tag.player{color:var(--accent); border:1px solid var(--accent)}
+.chip{
+  flex:0 0 auto; font-size:.72rem; color:var(--accent); border:1px solid var(--accent);
+  border-radius:999px; padding:2px 10px; text-decoration:none; white-space:nowrap;
+}
+.chip:hover{background:var(--accent); color:var(--accent-ink)}
+.chips{display:flex; flex-wrap:wrap; gap:7px}
+a.ref{color:var(--accent); text-decoration:underline; text-decoration-style:dotted; text-underline-offset:3px}
+a.ref:hover{text-decoration-style:solid}
+
+.browse{display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:10px}
+.browse a{display:flex; justify-content:space-between; align-items:baseline; gap:8px; text-decoration:none; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:10px 13px}
+.browse a:hover{border-color:var(--accent)}
+.browse .n{color:var(--muted); font-size:.85rem; font-variant-numeric:tabular-nums}
+
+.crumb{font-size:.8rem; color:var(--muted); margin-bottom:8px}
+.crumb a{color:var(--rust); text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.entry-title{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px}
+.entry-title h1{font-size:1.9rem; line-height:1.15; margin-right:auto; min-width:0}
+.sub{color:var(--muted); margin:6px 0 0; font-size:.95rem}
+.lead{font-size:1.05rem; margin:0}
+.block h3{font-size:1rem; color:var(--text); margin-bottom:6px; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.block ul{margin:0; padding-left:1.2em}
+.block li{margin-bottom:5px}
+.block.dm{border-left:3px dashed var(--rust); padding-left:13px}
+.label{font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px}
+.homebrew{font-size:.7rem; color:var(--rust); border:1px solid var(--rust); border-radius:999px; padding:1px 9px}
+.pending{color:var(--muted); font-size:.88rem; margin:10px 0 0}
+
+.stat{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:14px 16px; font-family:var(--font-mono); font-size:.86rem; line-height:1.5;
+}
+.stat.pc{border-left:3px solid var(--accent)}
+.stat .core{border-block:1px solid var(--line); padding-block:8px; margin-block:0 8px}
+.stat .abil{color:var(--muted); margin-bottom:8px; overflow-wrap:anywhere}
+.stat p{margin:6px 0}
+.stat b{font-weight:600}
+
+.result-snippet{color:var(--muted); font-size:.9rem}
+footer{max-width:720px; margin:0 auto; padding:0 16px 40px; color:var(--muted); font-size:.8rem; text-align:center}
+@media (max-width:420px){ .entry-title h1{font-size:1.55rem} .page-h{font-size:1.6rem} }

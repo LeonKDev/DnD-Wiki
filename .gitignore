@@ -1,0 +1,7 @@
+node_modules/
+*.zip
+# The DM source must live outside this folder, but just in case:
+DnD-Wiki-DM/
+dm-source/
+extras.js
+entries.js

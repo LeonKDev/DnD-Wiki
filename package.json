@@ -1,0 +1,10 @@
+{
+  "name": "dnd-wiki",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Campaign wiki with a password-locked DM section",
+  "scripts": {
+    "build": "node tools/build-dm.js",
+    "check": "node tools/check.js"
+  }
+}
