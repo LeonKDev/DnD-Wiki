@@ -131,3 +131,8 @@ footer{max-width:720px; margin:0 auto; padding:0 16px 40px; color:var(--muted); 
 .progress-text{font-size:.78rem; color:var(--muted); margin-bottom:5px; font-variant-numeric:tabular-nums}
 .bar{height:6px; background:var(--surface-2); border-radius:999px; overflow:hidden}
 .bar span{display:block; height:100%; background:var(--accent); border-radius:999px}
+
+.segs{display:flex; gap:4px}
+.seg{flex:1 1 0; height:6px; border-radius:999px; border:1px solid var(--accent); background:transparent}
+.seg.done{background:var(--accent)}
+.seg.unknown{border-style:dashed; border-color:var(--line); flex-grow:1.4}

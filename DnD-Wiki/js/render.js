@@ -11,7 +11,15 @@ function chapterProgress(e){
 }
 function progressHtml(e){
   if(e.type!=='chapter') return '';
-  var p = chapterProgress(e); if(!p.total) return '';
+  var q = ENTRIES.filter(function(x){ return x.parent===e.id && x.type==='quest'; });
+  var p = chapterProgress(e); if(!q.length) return '';
+  if(e.open){
+    var act = q.length - p.done;
+    var label = p.done+' resolved'+(act ? ' \u00b7 '+act+' active' : '')+' \u00b7 more to come';
+    return '<div class="progress"><div class="progress-text">'+label+'</div><div class="segs" role="img" aria-label="'+label+'">'
+      + q.map(function(x){ return '<span class="seg'+(x.status==='Resolved'?' done':'')+'"></span>'; }).join('')
+      + '<span class="seg unknown"></span></div></div>';
+  }
   return '<div class="progress"><div class="progress-text">'+p.done+' of '+p.total+' quests resolved</div>'
     + '<div class="bar" role="progressbar" aria-label="Chapter progress" aria-valuemin="0" aria-valuemax="'+p.total+'" aria-valuenow="'+p.done+'"><span style="width:'+Math.round(p.done/p.total*100)+'%"></span></div></div>';
 }

@@ -56,7 +56,7 @@ Open the right file in `data/` and add an entry to the list. Link to any other e
 
 Fields: `id` (unique, lowercase with dashes), `type` (see `data/config.js`), `title`, optional `sub`, `summary`, `status`, `sections`, `parent` (quests only). A section is `{h: 'Heading', p: ['paragraph'], ul: ['bullet']}`.
 
-Part of a chapter: give the quest `parent: 'chap-goblin'`. It then shows on the chapter's page, the chapter shows how many of its quests are resolved, and the chapter's timeline includes their history lines. A quest's `summary` says what it was when the party took it on; what happened goes in the history and an `Outcome` section.
+Part of a chapter: give the quest `parent: 'chap-goblin'`. It then shows on the chapter's page, the chapter shows how many of its quests are resolved, and the chapter's timeline includes their history lines. Add `open: true` to a chapter while its quests are not all planned yet: the progress bar then shows one segment per quest plus a dashed "more to come" segment. Remove it once the chapter is complete. A quest's `summary` says what it was when the party took it on; what happened goes in the history and an `Outcome` section.
 
 History line (`data/history.js`):
 
