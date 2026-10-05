@@ -4,6 +4,7 @@ WIKI.add([
   {
     id: 'enc-wagon',
     type: 'encounter',
+    parent: 'chap-goblin',
     title: 'The Cart on the Road',
     status: 'Done',
     summary: 'Three goblins at an abandoned merchant’s cart, with no merchant in sight. The party killed two and one fled.',
@@ -15,7 +16,7 @@ WIKI.add([
         ]
       },
       {h: 'Creatures', ul: ['[[cr-goblin]] x3']},
-      {h: 'Linked', ul: ['[[quest-cart]]']}
+      {h: 'Linked', ul: ['[[chap-goblin]]']}
     ]
   },
 

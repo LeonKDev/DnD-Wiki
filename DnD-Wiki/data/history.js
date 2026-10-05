@@ -4,14 +4,14 @@ WIKI.addEvents([
   {
     id: 'ev1',
     who: 'Party',
-    quest: 'quest-cart',
+    quest: 'chap-goblin',
     text: 'Found a merchant’s cart on the road with no merchant in sight and three goblins. Killed two. The third fled when its ally fell, and the party saw which way it went. See [[enc-wagon]].'
   },
 
   {
     id: 'ev2',
     who: 'John',
-    quest: 'quest-tavern',
+    quest: 'quest-camp',
     text: 'Walked up to two strangers in the tavern and drank a beer with them. They had a map of the goblin camp on the table and were talking about clearing it. See [[npc-strangers]].'
   },
 
@@ -32,7 +32,7 @@ WIKI.addEvents([
   {
     id: 'ev5',
     who: 'Party',
-    quest: 'quest-tavern',
+    quest: 'quest-camp',
     text: 'Decided to head to the goblin camp first, since John knew where it was before the strangers went.'
   },
 
@@ -60,7 +60,7 @@ WIKI.addEvents([
   {
     id: 'ev9',
     who: 'Party',
-    quest: 'quest-tavern',
+    quest: 'quest-camp',
     text: 'No sign of the two strangers at the camp.'
   }
 ]);

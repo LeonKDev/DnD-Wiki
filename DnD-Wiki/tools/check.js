@@ -31,7 +31,7 @@ function checkEntry(e, isDm) {
   const where = (isDm ? '[DM] ' : '') + e.id;
   if (!TYPES[e.type]) problems.push(where + ': unknown type "' + e.type + '"');
   if (!e.title) problems.push(where + ': missing title');
-  if (e.type === 'quest' && e.status && !['Active', 'Resolved'].includes(e.status)) problems.push(where + ': quest status must be Active or Resolved');
+  if ((e.type === 'quest' || e.type === 'chapter') && e.status && !['Active', 'Resolved'].includes(e.status)) problems.push(where + ': quest/chapter status must be Active or Resolved');
   if (e.type === 'encounter' && e.status && !['Done', 'Upcoming'].includes(e.status)) problems.push(where + ': encounter status must be Done or Upcoming');
   if (e.parent && !seen.has(e.parent)) problems.push(where + ': parent "' + e.parent + '" does not exist');
   if (e.parent && !isDm && dmIds.has(e.parent)) warnings.push(where + ': parent is a DM-only entry');
@@ -47,7 +47,7 @@ Object.keys(dmExtra).forEach(id => {
   strings(dmExtra[id], []).forEach(s => links(s).forEach(l => { if (!seen.has(l)) problems.push('[DM extras] ' + id + ': broken link [[' + l + ']]'); }));
 });
 W.events.forEach(v => {
-  if (!seen.has(v.quest)) problems.push('Event ' + v.id + ': quest "' + v.quest + '" does not exist');
+  if (v.quest && !seen.has(v.quest)) problems.push('Event ' + v.id + ': quest "' + v.quest + '" does not exist');
   else if (dmIds.has(v.quest)) warnings.push('Event ' + v.id + ' belongs to a DM-only quest');
   links(v.text).forEach(id => {
     if (!seen.has(id)) problems.push('Event ' + v.id + ': broken link [[' + id + ']]');

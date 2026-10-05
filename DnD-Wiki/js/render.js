@@ -5,13 +5,23 @@ function statusPill(e){
   return '<span class="pill'+(on?' on':'')+'">'+esc(e.status)+'</span>';
 }
 function whoTag(w){ return '<span class="tag '+(w==='Party'?'party':'player')+'">'+esc(w)+'</span>'; }
+function chapterProgress(e){
+  var q = ENTRIES.filter(function(x){ return x.parent===e.id && x.type==='quest'; });
+  return {done: q.filter(function(x){ return x.status==='Resolved'; }).length, total: q.length};
+}
+function progressHtml(e){
+  if(e.type!=='chapter') return '';
+  var p = chapterProgress(e); if(!p.total) return '';
+  return '<div class="progress"><div class="progress-text">'+p.done+' of '+p.total+' quests resolved</div>'
+    + '<div class="bar" role="progressbar" aria-label="Chapter progress" aria-valuemin="0" aria-valuemax="'+p.total+'" aria-valuenow="'+p.done+'"><span style="width:'+Math.round(p.done/p.total*100)+'%"></span></div></div>';
+}
 function stripLinks(h){ return h.replace(/<a [^>]*>([^<]*)<\/a>/g,'$1'); }
 
 function card(e, hideParent){
   var d = e.summary || e.sub || '';
   var pl = (!hideParent && e.parent && ENT[e.parent]) ? '<span class="typelabel">Part of '+esc(ENT[e.parent].title)+'</span>' : '';
   return '<a class="card" href="#'+e.id+'"><div class="card-top">'+pl+'<h3>'+esc(e.title)+'</h3>'+(e.dmOnly?'<span class="dmtag">DM only</span>':'')+statusPill(e)+'</div>'
-    + (d ? '<p>'+stripLinks(rt(d))+'</p>' : '') + '</a>';
+    + (d ? '<p>'+stripLinks(rt(d))+'</p>' : '') + progressHtml(e) + '</a>';
 }
 function cardWithType(e){
   var d = e.summary || e.sub || '';
@@ -37,7 +47,7 @@ function questFilterBlock(){
   var resolved = quests.filter(function(e){ return e.status==='Resolved'; });
   var shown = qFilter==='active' ? active : qFilter==='resolved' ? resolved : quests;
   function btn(key,label,n){ return '<button type="button" data-filter="'+key+'" aria-pressed="'+(qFilter===key)+'">'+label+' ('+n+')</button>'; }
-  var body = shown.length ? '<div class="cards">'+shown.map(card).join('')+'</div>'
+  var body = shown.length ? '<div class="cards">'+shown.map(function(x){ return card(x); }).join('')+'</div>'
     : '<p class="empty">No '+(qFilter==='resolved'?'resolved':'active')+' quests right now. Finished quests move to Resolved and stay searchable.</p>';
   return '<div class="filters">'+btn('active','Active',active.length)+btn('resolved','Resolved',resolved.length)+btn('all','All',quests.length)+'</div>'+body;
 }
@@ -53,9 +63,11 @@ function renderHome(){
     var n = ENTRIES.filter(function(e){ return e.type===k; }).length;
     return '<a href="#'+TYPES[k].list+'"><span>'+TYPES[k].label+'</span><span class="n">'+n+'</span></a>';
   }).join('') + '<a href="#list-history"><span>History</span><span class="n">'+EVENTS.length+'</span></a>';
+  var chaps = ENTRIES.filter(function(e){ return e.type==='chapter'; });
   return '<p class="intro">Everything the party knows so far. Search, browse by type, or follow the links between entries.</p>'
+    + (chaps.length ? '<section><div class="sec-head"><h2>Chapters</h2><a class="more" href="#list-chapters">All chapters</a></div><div class="cards">'+chaps.map(function(x){ return card(x); }).join('')+'</div></section>' : '')
     + '<section><div class="sec-head"><h2>Quests</h2><a class="more" href="#list-quests">All quests</a></div><div id="quest-block">'+questFilterBlock()+'</div></section>'
-    + (upcoming.length ? '<section><div class="sec-head"><h2>Coming up</h2><a class="more" href="#list-encounters">All encounters</a></div><div class="cards">'+upcoming.map(card).join('')+'</div></section>' : '')
+    + (upcoming.length ? '<section><div class="sec-head"><h2>Coming up</h2><a class="more" href="#list-encounters">All encounters</a></div><div class="cards">'+upcoming.map(function(x){ return card(x); }).join('')+'</div></section>' : '')
     + '<section><div class="sec-head"><h2>Recent history</h2><a class="more" href="#list-history">Full history</a></div>'+eventsList(recent)+'</section>'
     + '<section><div class="sec-head"><h2>Browse</h2></div><div class="browse">'+browse+'</div></section>';
 }
@@ -65,7 +77,7 @@ function renderList(typeKey){
   var items = ENTRIES.filter(function(e){ return e.type===typeKey; });
   var html = '<div><h1 class="page-h">'+t.label+'</h1></div>';
   if(typeKey==='quest') html += '<div id="quest-block">'+questFilterBlock()+'</div>';
-  else html += items.length ? '<div class="cards">'+items.map(card).join('')+'</div>' : '<p class="empty">Nothing here yet.</p>';
+  else html += items.length ? '<div class="cards">'+items.map(function(x){ return card(x); }).join('')+'</div>' : '<p class="empty">Nothing here yet.</p>';
   return html;
 }
 function renderHistory(){
@@ -87,13 +99,14 @@ function renderEntry(e){
     + '<div class="entry-title"><h1>'+esc(e.title)+'</h1>'+(e.tag?'<span class="homebrew">'+esc(e.tag)+'</span>':'')+(e.dmOnly?'<span class="dmtag">DM only</span>':'')+statusPill(e)+'</div>'
     + (e.sub ? '<p class="sub">'+esc(e.sub)+'</p>' : '') + '</div>';
   if(e.summary) h += '<p class="lead">'+rt(e.summary)+'</p>';
+  h += progressHtml(e);
   if(e.stat){
     if(e.dmStat) h += '<section class="block dm"><h3>Stat block <span class="dmtag">DM only</span></h3>'+statHtml(e.stat)+'</section>';
     else h += '<div>'+statHtml(e.stat)+(e.note?'<p class="pending">'+esc(e.note)+'</p>':'')+'</div>';
   }
-  if(e.type==='quest'){
+  if(e.type==='quest' || e.type==='chapter'){
     var kids = ENTRIES.filter(function(x){ return x.parent===e.id; });
-    if(kids.length) h += '<section class="block"><h3>Parts</h3><div class="cards">'+kids.map(function(k){ return card(k, true); }).join('')+'</div></section>';
+    if(kids.length) h += '<section class="block"><h3>'+(e.type==='chapter'?'In this chapter':'Parts')+'</h3><div class="cards">'+kids.map(function(k){ return card(k, true); }).join('')+'</div></section>';
     var ids = [e.id].concat(kids.map(function(k){ return k.id; }));
     h += '<section class="block"><h3>Timeline</h3>'+eventsList(EVENTS.filter(function(v){ return ids.indexOf(v.quest)>=0; }), kids.length ? {} : {parts:true})+'</section>';
   }
@@ -103,7 +116,7 @@ function renderEntry(e){
       + (s.p||[]).map(function(x){ return '<p>'+rt(x)+'</p>'; }).join('')
       + (s.ul ? '<ul>'+s.ul.map(function(x){ return '<li>'+rt(x)+'</li>'; }).join('')+'</ul>' : '') + '</section>';
   });
-  if(e.type!=='quest'){
+  if(e.type!=='quest' && e.type!=='chapter'){
     var evs = eventsFor(e.id);
     if(evs.length) h += '<section class="block"><h3>In the history</h3>'+eventsList(evs)+'</section>';
   }

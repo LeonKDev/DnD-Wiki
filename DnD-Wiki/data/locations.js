@@ -6,7 +6,7 @@ WIKI.add([
     type: 'location',
     title: 'The Tavern',
     summary: 'Where John met the strangers, the merchant was posting his job, and Daanster found the backpack.',
-    sections: [{h: 'Linked quests', ul: ['[[quest-tavern]]', '[[quest-merchant]]', '[[quest-backpack]]']}]
+    sections: [{h: 'Linked quests', ul: ['[[quest-camp]]', '[[quest-merchant]]', '[[quest-backpack]]']}]
   },
 
   {

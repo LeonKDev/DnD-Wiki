@@ -1,5 +1,6 @@
 /* Site settings. Everything in data/ is public. Private notes live in the DM folder. */
 var TYPES = {
+  chapter: {label: 'Chapters', one: 'Chapter', list: 'list-chapters'},
   quest: {label: 'Quests', one: 'Quest', list: 'list-quests'},
   npc: {label: 'NPCs', one: 'NPC', list: 'list-npcs'},
   character: {label: 'Characters', one: 'Player character', list: 'list-characters'},

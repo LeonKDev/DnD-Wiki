@@ -126,3 +126,8 @@ a.ref:hover{text-decoration-style:solid}
 .result-snippet{color:var(--muted); font-size:.9rem}
 footer{max-width:720px; margin:0 auto; padding:0 16px 40px; color:var(--muted); font-size:.8rem; text-align:center}
 @media (max-width:420px){ .entry-title h1{font-size:1.55rem} .page-h{font-size:1.6rem} }
+
+.progress{margin-top:10px}
+.progress-text{font-size:.78rem; color:var(--muted); margin-bottom:5px; font-variant-numeric:tabular-nums}
+.bar{height:6px; background:var(--surface-2); border-radius:999px; overflow:hidden}
+.bar span{display:block; height:100%; background:var(--accent); border-radius:999px}

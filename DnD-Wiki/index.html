@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>The Road to the Demon King</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+    <header class="masthead">
+        <div class="mast-inner">
+            <div class="mast-top">
+                <a class="brand" href="#home"><span class="eyebrow">Campaign wiki</span><span class="name">The Road to the Demon King</span></a>
+                <div class="search"><input id="q" type="search" placeholder="Search the wiki" aria-label="Search the wiki" autocomplete="off"></div>
+                <button type="button" class="dmbtn" id="dmbtn" aria-pressed="false" aria-expanded="false" aria-controls="dmpanel">DM</button>
+            </div>
+            <div class="dmpanel" id="dmpanel" hidden>
+                <form id="dmform" autocomplete="off">
+                    <label class="sr" for="dmpw">DM password</label>
+                    <input id="dmpw" type="password" placeholder="DM password" autocomplete="off">
+                    <button type="submit" class="btn" id="dmgo">Unlock</button>
+                </form>
+                <p class="dmmsg" id="dmmsg" role="status"></p>
+            </div>
+            <nav class="typenav" id="typenav" aria-label="Browse by type"></nav>
+        </div>
+    </header>
+
+    <main><div class="view" id="view"></div></main>
+    <footer>The Road to the Demon King · campaign wiki</footer>
+    <script src="js/wiki.js"></script>
+    <script src="data/config.js"></script>
+    <script src="data/chapters.js"></script>
+    <script src="data/characters.js"></script>
+    <script src="data/creatures.js"></script>
+    <script src="data/encounters.js"></script>
+    <script src="data/history.js"></script>
+    <script src="data/items.js"></script>
+    <script src="data/locations.js"></script>
+    <script src="data/npcs.js"></script>
+    <script src="data/quests.js"></script>
+    <script src="data/dm-payload.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/dm.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

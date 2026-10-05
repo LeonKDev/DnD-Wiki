@@ -19,6 +19,7 @@ index.html          page shell and the order scripts load in
 css/tokens.css      colors and fonts (change the look here)
 css/style.css       layout and components
 data/config.js      entry types and the "level 2 pending" line
+data/chapters.js    the big arcs; quests join one with parent: 'chap-id'
 data/quests.js      one file per entry type, all visible to players
 data/npcs.js
 data/characters.js
@@ -55,7 +56,7 @@ Open the right file in `data/` and add an entry to the list. Link to any other e
 
 Fields: `id` (unique, lowercase with dashes), `type` (see `data/config.js`), `title`, optional `sub`, `summary`, `status`, `sections`, `parent` (quests only). A section is `{h: 'Heading', p: ['paragraph'], ul: ['bullet']}`.
 
-Part of a bigger questline: give the quest `parent: 'quest-goblin'`. It then shows on the parent's page as a part, and the parent's timeline includes its history lines.
+Part of a chapter: give the quest `parent: 'chap-goblin'`. It then shows on the chapter's page, the chapter shows how many of its quests are resolved, and the chapter's timeline includes their history lines. A quest's `summary` says what it was when the party took it on; what happened goes in the history and an `Outcome` section.
 
 History line (`data/history.js`):
 
