@@ -46,7 +46,6 @@ WIKI.add([
   {
     id: 'quest-merchant',
     type: 'quest',
-    parent: 'quest-goblin',
     title: 'The Merchant’s Reward',
     status: 'Active',
     summary: 'Collect the reward for recovering the merchant’s cart. He was posting the job in the tavern, but the party had already done it.',
