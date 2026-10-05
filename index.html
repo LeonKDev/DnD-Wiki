@@ -1,0 +1,530 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>The Road to the Demon King</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#181b22;
+    --surface:#222630;
+    --surface-2:#2b303c;
+    --text:#e8e4d6;
+    --muted:#9ba1ae;
+    --accent:#c9a24b;
+    --accent-ink:#181b22;
+    --rust:#c0705a;
+    --line:#3a404d;
+    --focus:#e6c26a;
+    --font-display:"Fraunces", Georgia, serif;
+    --font-body:"Source Serif 4", Georgia, serif;
+    --font-mono:ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    --radius:4px;
+    color-scheme:dark;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --bg:#eceff3; --surface:#ffffff; --surface-2:#e3e7ee; --text:#1c2029; --muted:#586070;
+      --accent:#8a6a1c; --accent-ink:#ffffff; --rust:#9c4430; --line:#c9cfd9; --focus:#8a6a1c;
+      color-scheme:light;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#eceff3; --surface:#ffffff; --surface-2:#e3e7ee; --text:#1c2029; --muted:#586070;
+    --accent:#8a6a1c; --accent-ink:#ffffff; --rust:#9c4430; --line:#c9cfd9; --focus:#8a6a1c;
+    color-scheme:light;
+  }
+
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  html{scroll-padding-top:150px}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--font-body); font-size:16px; line-height:1.6;
+  }
+  h1,h2,h3{font-family:var(--font-display); font-weight:650; margin:0; text-wrap:balance; letter-spacing:.2px}
+  a{color:inherit}
+  a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
+  p{margin:0 0 10px}
+  .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+  .masthead{
+    position:sticky; top:env(safe-area-inset-top, 0px); z-index:10;
+    background:var(--bg); border-bottom:1px solid var(--line);
+    padding-inline:16px;
+  }
+  .mast-inner{max-width:720px; margin:0 auto}
+  .mast-top{display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; padding-block:12px 6px}
+  .brand{display:flex; flex-direction:column; text-decoration:none; margin-right:auto; min-width:0}
+  .brand .eyebrow{font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--rust)}
+  .brand .name{font-family:var(--font-display); font-weight:650; font-size:1.2rem; line-height:1.15}
+  .search{flex:1 1 200px; min-width:0}
+  .search input, .dmpanel input{
+    width:100%; background:var(--surface); color:var(--text); border:1px solid var(--line);
+    border-radius:var(--radius); padding:9px 12px; font:inherit; font-size:.92rem;
+  }
+  .search input::placeholder, .dmpanel input::placeholder{color:var(--muted)}
+  .dmbtn, .btn{
+    font:inherit; font-size:.82rem; color:var(--accent); background:transparent; cursor:pointer;
+    border:1px solid var(--accent); border-radius:999px; padding:6px 14px; white-space:nowrap;
+  }
+  .dmbtn:hover, .btn:hover{background:var(--accent); color:var(--accent-ink)}
+  .dmbtn[aria-pressed="true"]{background:var(--accent); color:var(--accent-ink)}
+  .dmpanel{padding-block:4px 12px}
+  .dmpanel form{display:flex; flex-wrap:wrap; gap:8px}
+  .dmpanel input{flex:1 1 200px; width:auto; min-width:0}
+  .dmmsg{margin:6px 0 0; font-size:.85rem; color:var(--rust); min-height:1.2em}
+  .typenav{display:flex; overflow-x:auto; gap:0; margin-inline:-4px}
+  .typenav a{
+    color:var(--muted); text-decoration:none; font-size:.85rem; white-space:nowrap;
+    padding:9px 11px 10px; border-bottom:2px solid transparent;
+  }
+  .typenav a:hover{color:var(--accent)}
+  .typenav a.on{color:var(--accent); border-bottom-color:var(--accent)}
+
+  main{max-width:720px; margin:0 auto; padding-inline:16px; padding-block:26px 70px}
+  .view > * + *{margin-top:34px}
+  .intro{color:var(--muted); max-width:56ch; margin:0}
+  .sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--line); margin-bottom:14px; padding-bottom:8px}
+  .sec-head h2{font-size:1.2rem; color:var(--accent)}
+  .more{font-size:.82rem; color:var(--accent)}
+  .page-h{font-size:1.9rem}
+
+  .filters{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px}
+  .filters button{
+    font:inherit; font-size:.82rem; color:var(--muted); background:transparent;
+    border:1px solid var(--line); border-radius:999px; padding:4px 13px; cursor:pointer;
+  }
+  .filters button:hover{color:var(--text); border-color:var(--muted)}
+  .filters button[aria-pressed="true"]{color:var(--accent-ink); background:var(--accent); border-color:var(--accent)}
+
+  .cards{display:grid; gap:10px}
+  .card{
+    display:block; text-decoration:none; background:var(--surface); border:1px solid var(--line);
+    border-radius:var(--radius); padding:13px 15px;
+  }
+  a.card:hover{border-color:var(--accent)}
+  .card-top{display:flex; align-items:baseline; gap:8px 10px; flex-wrap:wrap}
+  .card h3{font-size:1.05rem; margin-right:auto; min-width:0}
+  .card p{color:var(--muted); font-size:.92rem; margin:6px 0 0}
+  .typelabel{font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--rust)}
+  .pill{font-size:.7rem; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:2px 9px; white-space:nowrap}
+  .pill.on{color:var(--accent); border-color:var(--accent)}
+  .dmtag{font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--rust); border:1px solid var(--rust); border-radius:999px; padding:1px 8px; white-space:nowrap}
+  .empty{color:var(--muted); border:1px dashed var(--line); border-radius:var(--radius); padding:16px; margin:0}
+
+  .events{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+  .events li{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px}
+  .events .txt{flex:1 1 260px; min-width:0}
+  .part{font-size:.78rem; color:var(--accent); flex:0 0 auto; font-variant-numeric:tabular-nums}
+  .tag{flex:0 0 auto; font-size:.68rem; border-radius:999px; padding:2px 9px; white-space:nowrap}
+  .tag.party{color:var(--muted); border:1px solid var(--line)}
+  .tag.player{color:var(--accent); border:1px solid var(--accent)}
+  .chip{
+    flex:0 0 auto; font-size:.72rem; color:var(--accent); border:1px solid var(--accent);
+    border-radius:999px; padding:2px 10px; text-decoration:none; white-space:nowrap;
+  }
+  .chip:hover{background:var(--accent); color:var(--accent-ink)}
+  .chips{display:flex; flex-wrap:wrap; gap:7px}
+  a.ref{color:var(--accent); text-decoration:underline; text-decoration-style:dotted; text-underline-offset:3px}
+  a.ref:hover{text-decoration-style:solid}
+
+  .browse{display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:10px}
+  .browse a{display:flex; justify-content:space-between; align-items:baseline; gap:8px; text-decoration:none; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:10px 13px}
+  .browse a:hover{border-color:var(--accent)}
+  .browse .n{color:var(--muted); font-size:.85rem; font-variant-numeric:tabular-nums}
+
+  .crumb{font-size:.8rem; color:var(--muted); margin-bottom:8px}
+  .crumb a{color:var(--rust); text-decoration:none}
+  .crumb a:hover{text-decoration:underline}
+  .entry-title{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px}
+  .entry-title h1{font-size:1.9rem; line-height:1.15; margin-right:auto; min-width:0}
+  .sub{color:var(--muted); margin:6px 0 0; font-size:.95rem}
+  .lead{font-size:1.05rem; margin:0}
+  .block h3{font-size:1rem; color:var(--text); margin-bottom:6px; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .block ul{margin:0; padding-left:1.2em}
+  .block li{margin-bottom:5px}
+  .block.dm{border-left:3px dashed var(--rust); padding-left:13px}
+  .label{font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:8px}
+  .homebrew{font-size:.7rem; color:var(--rust); border:1px solid var(--rust); border-radius:999px; padding:1px 9px}
+  .pending{color:var(--muted); font-size:.88rem; margin:10px 0 0}
+
+  .stat{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:14px 16px; font-family:var(--font-mono); font-size:.86rem; line-height:1.5;
+  }
+  .stat.pc{border-left:3px solid var(--accent)}
+  .stat .core{border-block:1px solid var(--line); padding-block:8px; margin-block:0 8px}
+  .stat .abil{color:var(--muted); margin-bottom:8px; overflow-wrap:anywhere}
+  .stat p{margin:6px 0}
+  .stat b{font-weight:600}
+
+  .result-snippet{color:var(--muted); font-size:.9rem}
+  footer{max-width:720px; margin:0 auto; padding:0 16px 40px; color:var(--muted); font-size:.8rem; text-align:center}
+  @media (max-width:420px){ .entry-title h1{font-size:1.55rem} .page-h{font-size:1.6rem} }
+</style>
+
+<header class="masthead">
+  <div class="mast-inner">
+    <div class="mast-top">
+      <a class="brand" href="#home"><span class="eyebrow">Campaign wiki</span><span class="name">The Road to the Demon King</span></a>
+      <div class="search"><input id="q" type="search" placeholder="Search the wiki" aria-label="Search the wiki" autocomplete="off"></div>
+      <button type="button" class="dmbtn" id="dmbtn" aria-pressed="false" aria-expanded="false" aria-controls="dmpanel">DM</button>
+    </div>
+    <div class="dmpanel" id="dmpanel" hidden>
+      <form id="dmform" autocomplete="off">
+        <label class="sr" for="dmpw">DM password</label>
+        <input id="dmpw" type="password" placeholder="DM password" autocomplete="off">
+        <button type="submit" class="btn" id="dmgo">Unlock</button>
+      </form>
+      <p class="dmmsg" id="dmmsg" role="status"></p>
+    </div>
+    <nav class="typenav" id="typenav" aria-label="Browse by type"></nav>
+  </div>
+</header>
+
+<main><div class="view" id="view"></div></main>
+<footer>The Road to the Demon King · campaign wiki</footer>
+
+<script>
+var PAYLOAD = {"iter":600000,"salt":"G04FAji/6WQURTDy0wEcaQ==","iv":"scOxlD9hU8kP+t0z","ct":"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"};
+
+var TYPES = {
+  quest:    {label:'Quests',     one:'Quest',            list:'list-quests'},
+  npc:      {label:'NPCs',       one:'NPC',              list:'list-npcs'},
+  character:{label:'Characters', one:'Player character', list:'list-characters'},
+  location: {label:'Locations',  one:'Location',         list:'list-locations'},
+  encounter:{label:'Encounters', one:'Encounter',        list:'list-encounters'},
+  creature: {label:'Creatures',  one:'Creature',         list:'list-creatures'},
+  item:     {label:'Items',      one:'Item',             list:'list-items'},
+  note:     {label:'DM Notes',   one:'DM note',          list:'list-notes'}
+};
+
+var PENDING = 'Level 2 choices are still being made. HP, spells and features will update once they are chosen.';
+
+var PUBLIC = [
+  {id:'quest-merchant', type:'quest', title:"The Merchant's Reward", status:'Active',
+   summary:'Resolve the outstanding dispute over the reward the merchant was expected to pay.',
+   sections:[{h:'Current status', p:['The reward remains unpaid. The dispute is recorded separately from the initial wagon encounter.']},{h:'Where it connects', ul:['[[npc-merchant]] is involved.'] }]},
+  {id:'quest-backpack', type:'quest', title:'The Backpack', status:'Active',
+   summary:'Determine what should be done with the unclaimed backpack found in the tavern, including whether its owner can be found.',
+   sections:[{h:'What is known', p:['No owner came forward when asked. Daanster kept the backpack.']},{h:'Where it connects', ul:['[[item-backpack]] is the backpack and its contents.','[[loc-tavern]] is where it was found.']}]},
+  {id:'quest-goblin', type:'quest', title:'Goblin Trouble', status:'Active',
+   summary:'The party became involved with goblins after a wagon encounter and a tavern lead, leading to a cleared camp and a map pointing toward a cave.',
+   sections:[{h:'Trail so far', ul:['The party encountered three goblins at a wagon, defeated two, and let the third flee.','A lead from two strangers in the tavern brought the party to the goblin camp.','The party cleared the camp, killing the boss and one other goblin.','A map found at the camp points to [[loc-cave]].']},{h:'Next objective', p:['Explore [[loc-cave]].']},{h:'Current status', p:['The camp is cleared; the cave remains unexplored.'] }]},
+
+  {id:'npc-strangers', type:'npc', title:'The Two Strangers', sub:'Seen in the tavern',
+   summary:'Two strangers in the tavern talked about the goblin camp and provided the lead the party used to find it.',
+   sections:[]},
+  {id:'npc-merchant', type:'npc', title:'The Merchant', sub:'Wagon owner',
+   summary:'The merchant was not present when the party first encountered the wagon and goblins. A later reward dispute is recorded separately; no reward was paid.',
+   sections:[{h:'Status', p:['Reward unpaid. See [[quest-merchant]].']}]},
+
+  {id:'char-daanster', type:'character', title:'Daanster', sub:'Elf (Drow) Sorcerer 2 · Folk Hero · Chaotic Good', note:PENDING,
+   stat:{pc:true, core:'AC 10 · HP 10 · Speed 30 ft · Darkvision 120 ft', abil:'STR 9 (-1) · DEX 10 (+0) · CON 11 (+0) · INT 14 (+2) · WIS 13 (+1) · CHA 16 (+3)',
+     groups:[[{n:'Cantrips',t:'Light, Control Flames, Frostbite, Minor Illusion, Dancing Lights.'},{n:'1st level (3 slots)',t:'Magic Missile, Thunderwave.'}]]}},
+  {id:'char-piama', type:'character', title:'Piama', sub:'Tiefling Druid 2 · Noble · Neutral Good', note:PENDING,
+   stat:{pc:true, core:'AC 11 · HP 17 · Speed 30 ft · Darkvision 60 ft · Fire resistance', abil:'STR 15 (+2) · DEX 7 (-2) · CON 14 (+2) · INT 14 (+2) · WIS 18 (+4) · CHA 9 (-1)',
+     groups:[[{n:'Cantrips',t:'Druidcraft, Produce Flame, Fire Bolt, Thaumaturgy, Elementalism.'},{n:'1st level (3 slots)',t:'Wide prepared list including Healing Word, Entangle, Faerie Fire and Cure Wounds.'}]]}},
+  {id:'char-john', type:'character', title:'John Lockwood', sub:'Variant Human Fighter 2 · Soldier · Lawful Evil', note:PENDING,
+   stat:{pc:true, core:'AC 16 · HP 14 · Speed 30 ft', abil:'STR 18 (+4) · DEX 14 (+2) · CON 9 (-1) · INT 11 (+0) · WIS 12 (+1) · CHA 11 (+0)',
+     groups:[[{n:'Weapon Mastery',t:'Glaive (Graze), Halberd (Cleave), Shortsword (Vex).'},{n:'Savage Attacker',t:'Once per turn, roll weapon damage twice and use either result.'}]]}},
+
+  {id:'loc-tavern', type:'location', title:'The Tavern',
+   summary:'Where John overheard the strangers and Daanster found the backpack.',
+   sections:[{h:'Linked quests', ul:['[[quest-goblin]]','[[quest-backpack]]']}]},
+  {id:'loc-camp', type:'location', title:'The Goblin Camp',
+   summary:'Found and cleared. The goblin boss and one more goblin died here, and the party looted a map to the goblin cave.',
+   sections:[{h:'Linked', ul:['[[enc-camp]] was the fight.','[[item-map]] was looted here.','[[quest-goblin]]']}]},
+  {id:'loc-cave', type:'location', title:'The Goblin Cave',
+   summary:'Marked on the map looted from the goblin camp. Not visited yet.',
+   sections:[{h:'Linked', ul:['[[item-map]] leads here.','[[quest-goblin]]']}]},
+
+  {id:'enc-wagon', type:'encounter', title:'Goblins at the Wagon', status:'Done',
+   summary:'Three goblins were at the wagon. The party defeated two; the third fled. The merchant was nowhere to be seen, and the party chose not to follow the fleeing goblin.',
+   sections:[{h:'Outcome', p:['The party did not follow the fleeing goblin. The tavern lead later brought them to the camp; see [[quest-goblin]].']},{h:'Creatures', ul:['[[cr-goblin]] x3 (two defeated; one fled)']}] },
+  {id:'enc-camp', type:'encounter', title:'The Goblin Camp Fight', status:'Done',
+   summary:'The party found the camp and killed the goblin boss and one more goblin.',
+   sections:[{h:'Outcome', p:['Looted [[item-map]].']},{h:'Where', ul:['[[loc-camp]]']}]},
+
+  {id:'cr-goblin', type:'creature', title:'Goblin', sub:'Small humanoid',
+   summary:'Three were encountered at the wagon (two defeated, one fled); goblins were also fought at the camp.',
+   sections:[{h:'Seen in', ul:['[[enc-wagon]]','[[enc-camp]]']}]},
+
+  {id:'item-backpack', type:'item', title:'The Unclaimed Backpack',
+   summary:'Contains 2 potions and 10 gold. Found in the tavern, no owner found, kept by Daanster.',
+   sections:[{h:'Linked', ul:['[[quest-backpack]]','[[loc-tavern]]','[[char-daanster]]']}]},
+  {id:'item-map', type:'item', title:'Map to the Goblin Cave',
+   summary:'Looted from the goblin camp.',
+   sections:[{h:'Linked', ul:['[[loc-camp]] is where it was found.','[[loc-cave]] is where it leads.','[[quest-goblin]]']}]}
+];
+
+var EVENTS = [
+  {id:'ev1', who:'Party', quest:'quest-goblin', text:'Encountered three goblins at a wagon. The party defeated two; the third fled. The merchant was nowhere to be seen, and the party chose not to follow the fleeing goblin. See [[enc-wagon]].'},
+  {id:'ev2', who:'John', quest:'quest-goblin', text:'At the tavern, overheard two strangers talking about the goblin camp. Their lead was used to find the camp. See [[npc-strangers]] and [[loc-tavern]].'},
+  {id:'ev3', who:'Daanster', quest:'quest-backpack', text:'Found an unclaimed backpack (2 potions, 10 gold) in the tavern. Asked around, no owner came forward, and kept it. See [[item-backpack]].'},
+  {id:'ev4', who:'Party', quest:'quest-goblin', text:'Found and cleared the Goblin Camp, killing the goblin boss and one more goblin. See [[enc-camp]].'},
+  {id:'ev5', who:'Party', quest:'quest-goblin', text:'Looted a map to a goblin cave from the camp. The cave has not been visited yet. See [[item-map]].'},
+  {id:'ev6', who:'Party', quest:'quest-goblin', text:'Followed the lead provided by the two strangers to reach the camp.'},
+  {id:'ev7', who:'Party', quest:'quest-goblin', text:'Reached level 2 after defeating the goblin boss.'},
+  {id:'ev8', who:'Piama', quest:'quest-merchant', text:'A Charisma check to collect the reward failed. A fight broke out with the merchant and no reward was paid. This is recorded separately from the initial wagon encounter.'}
+];
+
+var ENTRIES = [], ENT = {}, BACK = {}, dmOn = false;
+var viewEl = document.getElementById('view');
+var qEl = document.getElementById('q');
+var qFilter = 'active';
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function refLink(id){ var e = ENT[id]; return e ? '<a class="ref" href="#'+id+'">'+esc(e.title)+'</a>' : ''; }
+function rt(s){ return esc(s).replace(/\[\[([a-z0-9-]+)\]\]/g, function(m,id){ return refLink(id); }); }
+function plain(s){ return String(s).replace(/\[\[([a-z0-9-]+)\]\]/g, function(m,id){ return ENT[id] ? ENT[id].title : ''; }); }
+function refsIn(s){ var out=[], re=/\[\[([a-z0-9-]+)\]\]/g, m; while((m=re.exec(s))){ if(ENT[m[1]] && out.indexOf(m[1])<0) out.push(m[1]); } return out; }
+
+function entryText(e){
+  var t = [e.title, e.sub||'', e.summary||'', e.tag||'', e.note||''];
+  (e.sections||[]).forEach(function(s){ t.push(s.h); (s.p||[]).forEach(function(x){t.push(x)}); (s.ul||[]).forEach(function(x){t.push(x)}); });
+  if(e.stat){ t.push(e.stat.core, e.stat.abil); e.stat.groups.forEach(function(g){ g.forEach(function(x){ t.push((x.n||'')+' '+x.t); }); }); }
+  return t.join(' ');
+}
+function entryRefs(e){
+  var out=[]; function add(a){ a.forEach(function(id){ if(id!==e.id && out.indexOf(id)<0) out.push(id); }); }
+  add(refsIn(e.summary||''));
+  (e.sections||[]).forEach(function(s){ (s.p||[]).forEach(function(x){add(refsIn(x))}); (s.ul||[]).forEach(function(x){add(refsIn(x))}); });
+  return out;
+}
+function eventsFor(id){ return EVENTS.filter(function(v){ return v.quest===id || refsIn(v.text).indexOf(id)>=0; }); }
+
+function rebuild(dm){
+  var list = JSON.parse(JSON.stringify(PUBLIC));
+  if(dm){
+    list.forEach(function(e){
+      var x = dm.extra[e.id]; if(!x) return;
+      (x.sections||[]).forEach(function(s){ s.dm = true; e.sections = (e.sections||[]).concat([s]); });
+      if(x.stat){ e.stat = x.stat; e.dmStat = true; }
+    });
+    dm.entries.forEach(function(e){ e.dmOnly = true; list.push(e); });
+  }
+  ENTRIES = list; ENT = {}; BACK = {};
+  list.forEach(function(e){ ENT[e.id] = e; });
+  list.forEach(function(e){ entryRefs(e).forEach(function(id){ (BACK[id] = BACK[id]||[]); if(BACK[id].indexOf(e.id)<0) BACK[id].push(e.id); }); });
+}
+
+function statusPill(e){
+  if(!e.status) return '';
+  var on = (e.status==='Active' || e.status==='Upcoming');
+  return '<span class="pill'+(on?' on':'')+'">'+esc(e.status)+'</span>';
+}
+function whoTag(w){ return '<span class="tag '+(w==='Party'?'party':'player')+'">'+esc(w)+'</span>'; }
+function stripLinks(h){ return h.replace(/<a [^>]*>([^<]*)<\/a>/g,'$1'); }
+
+function card(e){
+  var d = e.summary || e.sub || '';
+  return '<a class="card" href="#'+e.id+'"><div class="card-top"><h3>'+esc(e.title)+'</h3>'+(e.dmOnly?'<span class="dmtag">DM only</span>':'')+statusPill(e)+'</div>'
+    + (d ? '<p>'+stripLinks(rt(d))+'</p>' : '') + '</a>';
+}
+function cardWithType(e){
+  var d = e.summary || e.sub || '';
+  return '<a class="card" href="#'+e.id+'"><div class="card-top"><span class="typelabel">'+TYPES[e.type].one+'</span><h3>'+esc(e.title)+'</h3>'+(e.dmOnly?'<span class="dmtag">DM only</span>':'')+statusPill(e)+'</div>'
+    + (d ? '<p>'+stripLinks(rt(d))+'</p>' : '') + '</a>';
+}
+function eventsList(list, opts){
+  opts = opts||{};
+  if(!list.length) return '<p class="empty">Nothing logged yet.</p>';
+  return '<ul class="events">' + list.map(function(v, i){
+    return '<li>'
+      + (opts.parts ? '<span class="part">Part '+(i+1)+'</span>' : '')
+      + whoTag(v.who)
+      + '<span class="txt">'+rt(v.text)+'</span>'
+      + (!opts.parts && v.quest && ENT[v.quest] ? '<a class="chip" href="#'+v.quest+'">'+esc(ENT[v.quest].title)+'</a>' : '')
+      + '</li>';
+  }).join('') + '</ul>';
+}
+
+function questFilterBlock(){
+  var quests = ENTRIES.filter(function(e){ return e.type==='quest'; });
+  var active = quests.filter(function(e){ return e.status==='Active'; });
+  var resolved = quests.filter(function(e){ return e.status==='Resolved'; });
+  var shown = qFilter==='active' ? active : qFilter==='resolved' ? resolved : quests;
+  function btn(key,label,n){ return '<button type="button" data-filter="'+key+'" aria-pressed="'+(qFilter===key)+'">'+label+' ('+n+')</button>'; }
+  var body = shown.length ? '<div class="cards">'+shown.map(card).join('')+'</div>'
+    : '<p class="empty">No '+(qFilter==='resolved'?'resolved':'active')+' quests right now. Finished quests move to Resolved and stay searchable.</p>';
+  return '<div class="filters">'+btn('active','Active',active.length)+btn('resolved','Resolved',resolved.length)+btn('all','All',quests.length)+'</div>'+body;
+}
+
+function typesWithEntries(){
+  return Object.keys(TYPES).filter(function(k){ return ENTRIES.some(function(e){ return e.type===k; }); });
+}
+
+function renderHome(){
+  var upcoming = ENTRIES.filter(function(e){ return e.type==='encounter' && e.status==='Upcoming'; });
+  var recent = EVENTS.slice().reverse().slice(0,5);
+  var browse = typesWithEntries().map(function(k){
+    var n = ENTRIES.filter(function(e){ return e.type===k; }).length;
+    return '<a href="#'+TYPES[k].list+'"><span>'+TYPES[k].label+'</span><span class="n">'+n+'</span></a>';
+  }).join('') + '<a href="#list-history"><span>History</span><span class="n">'+EVENTS.length+'</span></a>';
+  return '<p class="intro">Everything the party knows so far. Search, browse by type, or follow the links between entries.</p>'
+    + '<section><div class="sec-head"><h2>Quests</h2><a class="more" href="#list-quests">All quests</a></div><div id="quest-block">'+questFilterBlock()+'</div></section>'
+    + (upcoming.length ? '<section><div class="sec-head"><h2>Coming up</h2><a class="more" href="#list-encounters">All encounters</a></div><div class="cards">'+upcoming.map(card).join('')+'</div></section>' : '')
+    + '<section><div class="sec-head"><h2>Recent history</h2><a class="more" href="#list-history">Full history</a></div>'+eventsList(recent)+'</section>'
+    + '<section><div class="sec-head"><h2>Browse</h2></div><div class="browse">'+browse+'</div></section>';
+}
+
+function renderList(typeKey){
+  var t = TYPES[typeKey];
+  var items = ENTRIES.filter(function(e){ return e.type===typeKey; });
+  var html = '<div><h1 class="page-h">'+t.label+'</h1></div>';
+  if(typeKey==='quest') html += '<div id="quest-block">'+questFilterBlock()+'</div>';
+  else html += items.length ? '<div class="cards">'+items.map(card).join('')+'</div>' : '<p class="empty">Nothing here yet.</p>';
+  return html;
+}
+function renderHistory(){
+  return '<div><h1 class="page-h">History</h1><p class="sub">Everything that has happened, oldest first. Each line links to its quest.</p></div>' + eventsList(EVENTS);
+}
+
+function statHtml(s){
+  var h = '<div class="stat'+(s.pc?' pc':'')+'"><div class="core">'+esc(s.core)+'</div><div class="abil">'+esc(s.abil)+'</div>';
+  s.groups.forEach(function(g){
+    h += '<p>' + g.map(function(x){ return x.n ? '<b>'+esc(x.n)+'.</b> '+rt(x.t) : rt(x.t); }).join('<br>') + '</p>';
+  });
+  return h + '</div>';
+}
+function chips(ids){ return '<div class="chips">'+ids.map(function(id){ return '<a class="chip" href="#'+id+'">'+esc(ENT[id].title)+'</a>'; }).join('')+'</div>'; }
+
+function renderEntry(e){
+  var t = TYPES[e.type];
+  var h = '<div><div class="crumb"><a href="#'+t.list+'">'+t.label+'</a></div>'
+    + '<div class="entry-title"><h1>'+esc(e.title)+'</h1>'+(e.tag?'<span class="homebrew">'+esc(e.tag)+'</span>':'')+(e.dmOnly?'<span class="dmtag">DM only</span>':'')+statusPill(e)+'</div>'
+    + (e.sub ? '<p class="sub">'+esc(e.sub)+'</p>' : '') + '</div>';
+  if(e.summary) h += '<p class="lead">'+rt(e.summary)+'</p>';
+  if(e.stat){
+    if(e.dmStat) h += '<section class="block dm"><h3>Stat block <span class="dmtag">DM only</span></h3>'+statHtml(e.stat)+'</section>';
+    else h += '<div>'+statHtml(e.stat)+(e.note?'<p class="pending">'+esc(e.note)+'</p>':'')+'</div>';
+  }
+  if(e.type==='quest'){
+    h += '<section class="block"><h3>Timeline</h3>'+eventsList(EVENTS.filter(function(v){ return v.quest===e.id; }), {parts:true})+'</section>';
+  }
+  (e.sections||[]).forEach(function(s){
+    var dmMark = s.dm && !e.dmOnly;
+    h += '<section class="block'+(dmMark?' dm':'')+'"><h3>'+esc(s.h)+(dmMark?' <span class="dmtag">DM only</span>':'')+'</h3>'
+      + (s.p||[]).map(function(x){ return '<p>'+rt(x)+'</p>'; }).join('')
+      + (s.ul ? '<ul>'+s.ul.map(function(x){ return '<li>'+rt(x)+'</li>'; }).join('')+'</ul>' : '') + '</section>';
+  });
+  if(e.type!=='quest'){
+    var evs = eventsFor(e.id);
+    if(evs.length) h += '<section class="block"><h3>In the history</h3>'+eventsList(evs)+'</section>';
+  }
+  var out = entryRefs(e), back = BACK[e.id]||[];
+  if(out.length) h += '<section><div class="label">Links to</div>'+chips(out)+'</section>';
+  if(back.length) h += '<section><div class="label">Linked from</div>'+chips(back)+'</section>';
+  return h;
+}
+
+function renderSearch(raw){
+  var toks = raw.toLowerCase().split(/\s+/).filter(Boolean);
+  var res = [];
+  ENTRIES.forEach(function(e){
+    var hay = plain(entryText(e)).toLowerCase();
+    if(toks.every(function(w){ return hay.indexOf(w)>=0; })){
+      var inTitle = toks.every(function(w){ return e.title.toLowerCase().indexOf(w)>=0; });
+      res.push({score:inTitle?0:1, html:cardWithType(e)});
+    }
+  });
+  EVENTS.forEach(function(v){
+    var hay = plain(v.text+' '+v.who).toLowerCase();
+    if(toks.every(function(w){ return hay.indexOf(w)>=0; })){
+      res.push({score:2, html:'<div class="card"><div class="card-top"><span class="typelabel">History</span>'+whoTag(v.who)+'</div><p class="result-snippet">'+rt(v.text)+'</p></div>'});
+    }
+  });
+  res.sort(function(a,b){ return a.score-b.score; });
+  return '<div><h1 class="page-h">Search</h1><p class="sub">'+res.length+(res.length===1?' result':' results')+' for “'+esc(raw)+'”</p></div>'
+    + (res.length ? '<div class="cards">'+res.map(function(r){ return r.html; }).join('')+'</div>' : '<p class="empty">Nothing matches. Try a name, a place, or a single word.</p>');
+}
+
+function setNav(h){
+  var items = [{id:'home',label:'Home'}].concat(typesWithEntries().map(function(k){ return {id:TYPES[k].list,label:TYPES[k].label}; })).concat([{id:'list-history',label:'History'}]);
+  var active = h;
+  if(ENT[h]) active = TYPES[ENT[h].type].list;
+  document.getElementById('typenav').innerHTML = items.map(function(i){
+    return '<a href="#'+i.id+'"'+(i.id===active?' class="on" aria-current="page"':'')+'>'+i.label+'</a>';
+  }).join('');
+}
+
+function route(){
+  var h = (location.hash||'').replace(/^#/,'') || 'home';
+  var html;
+  if(h==='home') html = renderHome();
+  else if(h==='list-history') html = renderHistory();
+  else if(h.indexOf('list-')===0){
+    var key = Object.keys(TYPES).filter(function(k){ return TYPES[k].list===h; })[0];
+    html = (key && ENTRIES.some(function(e){ return e.type===key; })) ? renderList(key) : '<div><h1 class="page-h">Not available</h1><p class="sub">That page isn’t available. <a class="ref" href="#home">Back to home</a></p></div>';
+  }
+  else if(ENT[h]) html = renderEntry(ENT[h]);
+  else html = '<div><h1 class="page-h">Not available</h1><p class="sub">That page isn’t available. <a class="ref" href="#home">Back to home</a></p></div>';
+  viewEl.innerHTML = html;
+  setNav(h);
+}
+
+function showSearch(){
+  var v = qEl.value.trim();
+  if(!v){ route(); return; }
+  viewEl.innerHTML = renderSearch(v);
+  setNav('');
+}
+function refresh(){ if(qEl.value.trim()) showSearch(); else route(); }
+
+var dmBtn = document.getElementById('dmbtn'), dmPanel = document.getElementById('dmpanel');
+var dmForm = document.getElementById('dmform'), dmPw = document.getElementById('dmpw'), dmMsg = document.getElementById('dmmsg'), dmGo = document.getElementById('dmgo');
+
+function b64(s){ return Uint8Array.from(atob(s), function(c){ return c.charCodeAt(0); }); }
+async function decryptDM(pw){
+  var km = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+  var key = await crypto.subtle.deriveKey({name:'PBKDF2', salt:b64(PAYLOAD.salt), iterations:PAYLOAD.iter, hash:'SHA-256'}, km, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  var pt = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(PAYLOAD.iv)}, key, b64(PAYLOAD.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+function setDmUi(){
+  dmBtn.textContent = dmOn ? 'DM view on · Lock' : 'DM';
+  dmBtn.setAttribute('aria-pressed', String(dmOn));
+}
+function lockDM(){
+  dmOn = false; rebuild(null); setDmUi();
+  if(!ENT[(location.hash||'').replace(/^#/,'')] && /^#(list-(notes))$/.test(location.hash||'')) location.hash = '#home';
+  refresh();
+}
+dmBtn.addEventListener('click', function(){
+  if(dmOn){ lockDM(); return; }
+  dmPanel.hidden = !dmPanel.hidden;
+  dmBtn.setAttribute('aria-expanded', String(!dmPanel.hidden));
+  dmMsg.textContent = '';
+  if(!dmPanel.hidden) dmPw.focus();
+});
+dmForm.addEventListener('submit', async function(ev){
+  ev.preventDefault();
+  var pw = dmPw.value.trim();
+  if(!pw){ dmMsg.textContent = 'Enter the DM password.'; return; }
+  if(!window.crypto || !crypto.subtle){ dmMsg.textContent = 'This browser cannot unlock the DM section here. Use a current Chrome, Edge, Firefox or Safari.'; return; }
+  dmGo.disabled = true; dmMsg.textContent = 'Unlocking…';
+  try{
+    var data = await decryptDM(pw);
+    dmOn = true; rebuild(data); setDmUi();
+    dmPanel.hidden = true; dmBtn.setAttribute('aria-expanded','false');
+    dmPw.value = ''; dmMsg.textContent = '';
+    refresh();
+  }catch(err){
+    dmMsg.textContent = 'Wrong password.';
+  }
+  dmGo.disabled = false;
+});
+
+viewEl.addEventListener('click', function(ev){
+  var b = ev.target.closest('button[data-filter]');
+  if(b){ qFilter = b.getAttribute('data-filter'); var blk = document.getElementById('quest-block'); if(blk) blk.innerHTML = questFilterBlock(); }
+});
+qEl.addEventListener('input', showSearch);
+window.addEventListener('hashchange', function(){ qEl.value=''; route(); window.scrollTo(0,0); });
+
+rebuild(null);
+setDmUi();
+route();
+</script>
+</body></html>
